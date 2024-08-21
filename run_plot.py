@@ -1,8 +1,8 @@
-import matplotlib.pyplot as plt
 import pandas as pd
-import regex as re
 import sample
-# import os # For when I can automate this
+# Imports for when this process can be automated
+# import os 
+# import regex as re
 
 d1s6 = pd.read_csv('heatmaps/1_6_heatmap.csv',)
 

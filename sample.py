@@ -1,6 +1,9 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import regex as re
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+import scipy.stats as stats
 
 class Timestamp:
     def __init__(self,name: str,mapDf: pd.DataFrame):
@@ -14,8 +17,6 @@ class Timestamp:
         for area in mapDf['Value']:
             self.area += area
             
-
-
     # Getter Functions
     def get_average(self):
         return self.average 
@@ -43,7 +44,14 @@ class Sample:
             self.averages.append(timestamps[n].get_average())
             self.areas.append(timestamps[n].get_area())
             self.sDevs.append(timestamps[n].get_standard_deviation)
-            
+
+    def one_way_anova(self):
+        print(stats.f_oneway(self.daylist))
+
+    def two_way_anova(self):
+        adjusted_areas = self.areas
+        print(sm.stats.anova_lm(ols('day ~ size',data=self.areas).fit(), typ=1))
+
     # Plotting Functions
     def growth_plot(self,title='Number of Cells Present in Tissue Sample Over Time'):
         plt.bar(self.daylist,self.cellnumbers)
@@ -65,8 +73,5 @@ class Sample:
         plt.xlabel('Time (days)')
         plt.ylabel(r'Total Area ($\mu$m$^2$)')
         plt.show()
-    
 
 
-
-    
