@@ -53,25 +53,42 @@ class Sample:
         print(sm.stats.anova_lm(ols('day ~ size',data=self.areas).fit(), typ=1))
 
     # Plotting Functions
-    def growth_plot(self,title='Number of Cells Present in Tissue Sample Over Time'):
+    def growth_chart(self,title='Number of Cells Present in Tissue Sample Over Time'):
+        fig, ax = plt.subplots()
+        xticks = range(min(self.daylist), max(self.daylist) + 1)
+        ax.set_xticks(xticks)
         plt.bar(self.daylist,self.cellnumbers)
         plt.title(title)
         plt.xlabel('Time (days)')
         plt.ylabel('Number of Cells')
         plt.show()
 
-    def cell_size_plot(self,title='Average Cell Size Over Time'):
+    def cell_size_chart(self,title='Average Cell Size Over Time'):
+        fig, ax = plt.subplots()
+        xticks = range(min(self.daylist), max(self.daylist) + 1)
+        ax.set_xticks(xticks)
         plt.bar(self.daylist,self.averages)
         plt.title(title)
         plt.xlabel('Time (days)')
         plt.ylabel(r'Average Cell Size ($\mu$m$^2$)')
         plt.show()
 
-    def total_area_plot(self,title='Total Surface Area of Sample Over Time'):
+    def total_area_chart(self,title='Total Surface Area of Sample Over Time'):
+        fig, ax = plt.subplots()
+        xticks = range(min(self.daylist), max(self.daylist) + 1)
+        ax.set_xticks(xticks)
         plt.bar(self.daylist,self.areas)
         plt.title(title)
         plt.xlabel('Time (days)')
         plt.ylabel(r'Total Area ($\mu$m$^2$)')
         plt.show()
 
-
+    def total_area_plot(self,title='Total Surface Area of Sample Over Time'):
+        fig, ax = plt.subplots()
+        xticks = range(min(self.daylist), max(self.daylist) + 1)
+        ax.set_xticks(xticks)
+        plt.plot(self.daylist,self.areas)
+        plt.title(title)
+        plt.xlabel('Time (days)')
+        plt.ylabel(r'Total Area ($\mu$m$^2$)')
+        plt.show()

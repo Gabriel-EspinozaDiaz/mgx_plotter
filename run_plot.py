@@ -15,6 +15,7 @@ for n in range (1,5):
 
 test_sample = sample.Sample(sample6)
 
-test_sample.total_area_plot()
+test_sample.growth_chart()
+
 
 
